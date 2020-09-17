@@ -53,7 +53,9 @@ function init() {
           let data = change.doc.data();
           // console.log(`${JSON.stringify(data)}`);
           // console.log(change.doc.id);
-          var element = document.createElement("button");
+          console.log(change.doc.status );
+          if (change.doc.data().status === 'waiting'){   
+             var element = document.createElement("button");
           element.innerHTML="Join Room";
           element.onclick = async function() { // Note this is a function
             console.log(change.doc.id);
@@ -63,6 +65,8 @@ function init() {
             var parentobj = document.getElementById("roomList");
             //Append the element in page (in span).  
             parentobj.appendChild(element);
+            };
+      
 
         }
       });
