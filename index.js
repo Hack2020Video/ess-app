@@ -57,6 +57,9 @@ function init() {
           if (change.doc.data().status === 'waiting'){   
              var element = document.createElement("button");
           element.innerHTML="Join Room";
+          element.id = "joinButton";
+          element.className = "mdc-button mdc-button--raised";
+          console.log(element.id);
           element.onclick = async function() { // Note this is a function
             console.log(change.doc.id);
             await joinRoomById(change.doc.id);
