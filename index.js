@@ -36,7 +36,7 @@ let roomDialog = null;
 let roomId = null;
 
 function init() {
-  document.querySelector('#cameraBtn').addEventListener('click', openUserMedia);
+  // document.querySelector('#cameraBtn').addEventListener('click', openUserMedia);
   document.querySelector('#hangupBtn').addEventListener('click', hangUp);
  // document.querySelector('#createBtn').addEventListener('click', createRoom);
   document.querySelector('#joinBtn').addEventListener('click', joinRoom);
@@ -124,7 +124,8 @@ function init() {
 
 function joinRoom() {
   // document.querySelector('#createBtn').disabled = true;
-  document.querySelector('#joinBtn').disabled = true;
+  openUserMedia();
+  document.querySelector('#joinBtn').disabled = false;
 
   document.querySelector('#confirmJoinBtn').
       addEventListener('click', async () => {
@@ -211,7 +212,7 @@ async function openUserMedia(e) {
   document.querySelector('#remoteVideo').srcObject = remoteStream;
 
   console.log('Stream:', document.querySelector('#localVideo').srcObject);
-  document.querySelector('#cameraBtn').disabled = true;
+  // document.querySelector('#cameraBtn').disabled = true;
   document.querySelector('#joinBtn').disabled = false;
   // document.querySelector('#createBtn').disabled = false;
   document.querySelector('#hangupBtn').disabled = false;
@@ -233,8 +234,8 @@ async function hangUp(e) {
 
   document.querySelector('#localVideo').srcObject = null;
   document.querySelector('#remoteVideo').srcObject = null;
-  document.querySelector('#cameraBtn').disabled = false;
-  document.querySelector('#joinBtn').disabled = true;
+  // document.querySelector('#cameraBtn').disabled = false;
+  document.querySelector('#joinBtn').disabled = false;
   // document.querySelector('#createBtn').disabled = true;
   document.querySelector('#hangupBtn').disabled = true;
   document.querySelector('#currentRoom').innerText = '';
