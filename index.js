@@ -217,6 +217,7 @@ async function joinRoomById(roomId) {
         type: answer.type,
         sdp: answer.sdp,
       },
+      'status': 'inProgress'
     };
     await roomRef.update(roomWithAnswer);
     // Code for creating SDP answer above
