@@ -57,7 +57,7 @@ function init() {
           if (change.doc.data().status === 'waiting'){   
              var element = document.createElement("button");
           element.innerHTML="Join Room";
-          element.id = "joinButton";
+          element.id = change.doc.id;
           element.className = "mdc-button mdc-button--raised";
           console.log(element.id);
           element.onclick = async function() { // Note this is a function
@@ -245,7 +245,11 @@ async function joinRoomById(roomId) {
       if (change.type === 'removed' && roomId === change.doc.id ){
         console.log('hang up');
              hangUp();
-
+      }
+      console.log(change.doc.data().status);
+      if (change.type === 'modified' && change.doc.data().status === 'inProgress' ){
+        console.log("inside status monitor");
+             document.querySelector.getElementById(change.doc.id).remove();
       }
     });
   });
