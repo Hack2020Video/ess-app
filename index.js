@@ -55,8 +55,8 @@ function init() {
           // console.log(`${JSON.stringify(data)}`);
           // console.log(change.doc.id);
           console.log(change.doc.status );
-          if (change.doc.data().status === 'waiting'){   
-             var element = document.createElement("button");
+          // if (change.doc.data().status === 'waiting'){   
+          var element = document.createElement("button");
           element.innerHTML="Join Room";
           element.id = change.doc.id;
           element.className = "mdc-button mdc-button--raised";
@@ -71,7 +71,7 @@ function init() {
             var parentobj = document.getElementById("roomList");
             //Append the element in page (in span).  
             parentobj.appendChild(element);
-            };
+            // };
         }
         if (change.type === 'removed') {
           document.getElementById(change.doc.id).remove();
@@ -81,17 +81,7 @@ function init() {
         });
     });
 
-    //Tracking Disconnected calls
-    
-    //  db.collection('disConnectedCalls').onSnapshot(snapshot => {
-    //   snapshot.docChanges().forEach(async change => {
-    //     if (change.type === 'added') {
-    //       console.log('Inside Disconnected calls');
-    //       console.log(change.doc.id);
-    //       document.getElementById(change.doc.id).remove();
-    //     }
-    //   });
-    // });
+
  }
 // async function createRoom() {
 //   document.querySelector('#createBtn').disabled = true;
@@ -269,7 +259,7 @@ async function joinRoomById(roomId) {
     });
   });
   }
-  //Removing call from waiting List
+  //Removing call from waiting List (on joining)
   db.collection('waitingRooms').doc(roomId).delete();
 
 }
@@ -324,6 +314,7 @@ async function hangUp(e) {
       await candidate.ref.delete();
     });
     await roomRef.delete();
+    // Delete waiting list on hangup
     await db.collection('waitingRooms').doc(roomId).delete();
   }
 
