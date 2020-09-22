@@ -61,8 +61,10 @@ function init() {
           element.className = "mdc-button mdc-button--raised";
           console.log(element.id);
           element.onclick = async function() { // Note this is a function
+          console.log('Before doc id');
             console.log(change.doc.id);
-            await joinRoomById(change.doc.id);
+            roomId=change.doc.id;
+            await joinRoomById(roomId);
             this.disabled=true;
           };
             var parentobj = document.getElementById("roomList");
@@ -236,6 +238,17 @@ async function joinRoomById(roomId) {
       });
     });
     // Listening for remote ICE candidates above
+
+      // Listen for Room removal
+  db.collection('rooms').onSnapshot(snapshot => {
+    snapshot.docChanges().forEach(async change => {
+      if (change.type === 'removed' && roomId === change.doc.id ){
+        console.log('hang up');
+             hangUp();
+
+      }
+    });
+  });
   }
 }
 
