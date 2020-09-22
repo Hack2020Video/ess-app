@@ -47,7 +47,8 @@ function init() {
 //finding available rooms
  function  availablerooms(){
     const db = firebase.firestore();
-     db.collection('rooms').onSnapshot(snapshot => {
+
+     db.collection('waitingRooms').onSnapshot(snapshot => {
       snapshot.docChanges().forEach(async change => {
         if (change.type === 'added') {
           let data = change.doc.data();
@@ -71,13 +72,27 @@ function init() {
             //Append the element in page (in span).  
             parentobj.appendChild(element);
             };
-      
-
         }
-      });
+        if (change.type === 'removed') {
+          document.getElementById(change.doc.id).remove();
+        console.log(change.doc.id);
+        console.log("Inside removed function");
+          }
+        });
     });
-}
 
+    //Tracking Disconnected calls
+    
+    //  db.collection('disConnectedCalls').onSnapshot(snapshot => {
+    //   snapshot.docChanges().forEach(async change => {
+    //     if (change.type === 'added') {
+    //       console.log('Inside Disconnected calls');
+    //       console.log(change.doc.id);
+    //       document.getElementById(change.doc.id).remove();
+    //     }
+    //   });
+    // });
+ }
 // async function createRoom() {
 //   document.querySelector('#createBtn').disabled = true;
 //   document.querySelector('#joinBtn').disabled = true;
@@ -239,21 +254,24 @@ async function joinRoomById(roomId) {
     });
     // Listening for remote ICE candidates above
 
-      // Listen for Room removal
+      // Listen for Hangup
   db.collection('rooms').onSnapshot(snapshot => {
     snapshot.docChanges().forEach(async change => {
       if (change.type === 'removed' && roomId === change.doc.id ){
         console.log('hang up');
              hangUp();
       }
-      console.log(change.doc.data().status);
-      if (change.type === 'modified' && change.doc.data().status === 'inProgress' ){
-        console.log("inside status monitor");
-             document.querySelector.getElementById(change.doc.id).remove();
-      }
+      // console.log(change.doc.data().status);
+      // if (change.type === 'modified' && change.doc.data().status === 'inProgress' ){
+      //   console.log("inside status monitor");
+      //        document.querySelector.getElementById(change.doc.id).remove();
+      // }
     });
   });
   }
+  //Removing call from waiting List
+  db.collection('waitingRooms').doc(roomId).delete();
+
 }
 
 async function openUserMedia(e) {
@@ -306,6 +324,7 @@ async function hangUp(e) {
       await candidate.ref.delete();
     });
     await roomRef.delete();
+    await db.collection('waitingRooms').doc(roomId).delete();
   }
 
   document.location.reload(true);
