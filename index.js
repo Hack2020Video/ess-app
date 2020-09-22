@@ -52,10 +52,7 @@ function init() {
       snapshot.docChanges().forEach(async change => {
         if (change.type === 'added') {
           let data = change.doc.data();
-          // console.log(`${JSON.stringify(data)}`);
-          // console.log(change.doc.id);
           console.log(change.doc.status );
-          // if (change.doc.data().status === 'waiting'){   
           var element = document.createElement("button");
           element.innerHTML="Join Room";
           element.id = change.doc.id;
@@ -71,7 +68,6 @@ function init() {
             var parentobj = document.getElementById("roomList");
             //Append the element in page (in span).  
             parentobj.appendChild(element);
-            // };
         }
         if (change.type === 'removed') {
           document.getElementById(change.doc.id).remove();
