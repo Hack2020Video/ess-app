@@ -38,6 +38,7 @@ let roomId = null;
 function init() {
   
   document.querySelector('#hangupBtn').addEventListener('click', hangUp);
+  document.querySelector('#hangupBtn').style.visibility = 'hidden';
   roomDialog = new mdc.dialog.MDCDialog(document.querySelector('#room-dialog'));
   availablerooms();
  
@@ -85,6 +86,8 @@ async function joinRoomById(roomId) {
   const roomRef = db.collection('rooms').doc(`${roomId}`);
   const roomSnapshot = await roomRef.get();
   console.log('Got room:', roomSnapshot.exists);
+    document.querySelector('#hangupBtn').style.visibility = 'visible';
+
 
   if (roomSnapshot.exists) {
     console.log('Create PeerConnection with configuration: ', configuration);
