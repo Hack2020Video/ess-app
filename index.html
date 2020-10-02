@@ -9,55 +9,58 @@
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<div>
-<img src="https://www.huntington.com/-/media/hcom/global/logo/lockup.svg?rev=c9cf80c581284a5884ce918b9c672733&amp;h=81&amp;w=273&amp;la=en&amp;hash=CBB13816C82E9D808DD73BE863AAE7CC" height="81" width="273" alt="Huntington, Welcome">
- </div>   
-    <button class="mdc-button mdc-button--raised" disabled id="hangupBtn">
-        <i class="material-icons mdc-button__icon" aria-hidden="true">call_end</i>
-        <span class="mdc-button__label">Hangup</span>
-    </button>
-   
-  <p id="roomList">Available Rooms:</p>
-  
 
-</div>
-<div>
-    <span id="currentRoom"></span>
-</div>
-<div id="videos">
-    <video id="localVideo" muted autoplay playsinline></video>
-    <video id="remoteVideo" autoplay playsinline></video>
-</div>
-<div class="mdc-dialog"
-     id="room-dialog"
-     role="alertdialog"
-     aria-modal="true"
-     aria-labelledby="my-dialog-title"
-     aria-describedby="my-dialog-content">
-    <div class="mdc-dialog__container">
-        <div class="mdc-dialog__surface">
-            <h2 class="mdc-dialog__title" id="my-dialog-title">Join room</h2>
-            <div class="mdc-dialog__content" id="my-dialog-content">
-                Enter ID for room to join:
-                <div class="mdc-text-field">
-                    <input type="text" id="room-id" class="mdc-text-field__input">
-                    <label class="mdc-floating-label" for="my-text-field">Room ID</label>
-                    <div class="mdc-line-ripple"></div>
+   <div>
+      <img src="https://www.huntington.com/-/media/hcom/global/logo/lockup.svg?rev=c9cf80c581284a5884ce918b9c672733&amp;h=81&amp;w=273&amp;la=en&amp;hash=CBB13816C82E9D808DD73BE863AAE7CC" height="81" width="273" alt="Huntington, Welcome">
+    </div>
+    <h1 style="color: green;"> Welcome to Huntington Customer Care Support</h1>   
+       <div>    
+          <p id="roomList">Waiting Customers</p>
+          <div>
+            <span id="currentRoom"></span>
+          </div>
+        </div>
+        <button class="mdc-button mdc-button--raised" disabled id="hangupBtn">
+            <i class="material-icons mdc-button__icon" aria-hidden="true">call_end</i>
+            <span class="mdc-button__label">Hangup</span>
+        </button>
+     <div style="background-image: url('https://www.huntington.com/-/media/hcom/global/contactus/ContactGray20-3.png?rev=8910b24593f242d19ecf2d4278df5a19&amp;h=530&amp;w=1321&amp;la=en&amp;hash=7CCFEE225926FFA70A0630CBAF1133D3');">   
+    </div>    
+        <div id="videos">
+            <video id="localVideo" muted autoplay playsinline></video>
+            <video id="remoteVideo" autoplay playsinline></video>
+        </div>
+        <div class="mdc-dialog"
+            id="room-dialog"
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="my-dialog-title"
+            aria-describedby="my-dialog-content">
+            <div class="mdc-dialog__container">
+                <div class="mdc-dialog__surface">
+                    <h2 class="mdc-dialog__title" id="my-dialog-title">Join room</h2>
+                    <div class="mdc-dialog__content" id="my-dialog-content">
+                        Enter ID for room to join:
+                        <div class="mdc-text-field">
+                            <input type="text" id="room-id" class="mdc-text-field__input">
+                            <label class="mdc-floating-label" for="my-text-field">Room ID</label>
+                            <div class="mdc-line-ripple"></div>
+                        </div>
+                    </div>
+                    <footer class="mdc-dialog__actions">
+                        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="no">
+                            <span class="mdc-button__label">Cancel</span>
+                        </button>
+                        <button id="confirmJoinBtn" type="button" class="mdc-button mdc-dialog__button"
+                                data-mdc-dialog-action="yes">
+                            <span class="mdc-button__label">Join</span>
+                        </button>
+                    </footer>
                 </div>
             </div>
-            <footer class="mdc-dialog__actions">
-                <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="no">
-                    <span class="mdc-button__label">Cancel</span>
-                </button>
-                <button id="confirmJoinBtn" type="button" class="mdc-button mdc-dialog__button"
-                        data-mdc-dialog-action="yes">
-                    <span class="mdc-button__label">Join</span>
-                </button>
-            </footer>
-        </div>
-    </div>
-    <div class="mdc-dialog__scrim"></div>
-</div>
+            <div class="mdc-dialog__scrim"></div>
+        
+   
 <script src="index.js"></script>
 </body>
 </html>
