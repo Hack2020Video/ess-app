@@ -15,21 +15,21 @@
     </div>
     <h1 style="color: green;"> Welcome to Huntington Customer Care Support</h1>   
        <div>    
-          <p id="roomList">Waiting Customers</p>
+          <p id="roomList">Waiting for Customers</p>
           <div>
             <span id="currentRoom"></span>
           </div>
         </div>
-        <button class="mdc-button mdc-button--raised" disabled  id="hangupBtn">
-            <i class="material-icons mdc-button__icon" aria-hidden="true">call_end</i>
-            <span class="mdc-button__label">Hangup</span>
-        </button>
      <div style="background-image: url('https://www.huntington.com/-/media/hcom/global/contactus/ContactGray20-3.png?rev=8910b24593f242d19ecf2d4278df5a19&amp;h=530&amp;w=1321&amp;la=en&amp;hash=7CCFEE225926FFA70A0630CBAF1133D3');">   
     </div>    
         <div id="videos">
             <video id="localVideo" muted autoplay playsinline></video>
             <video id="remoteVideo" autoplay playsinline></video>
         </div>
+        <button class="mdc-button mdc-button--raised" hidden id="hangupBtn">
+            <i class="material-icons mdc-button__icon" aria-hidden="true">call_end</i>
+            <span class="mdc-button__label">Hangup</span>
+        </button>
         <div class="mdc-dialog"
             id="room-dialog"
             role="alertdialog"
